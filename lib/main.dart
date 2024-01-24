@@ -110,6 +110,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
                  height: 50,
                  fit: BoxFit.cover,
                ),
+               onTap: (){//click vao item
+                 Navigator.push(context,
+                     MaterialPageRoute(builder: (context)=>ProducDetailScreen(products[index]),
+                     ),
+                 );
+               },
              );
            },
          )
@@ -117,6 +123,64 @@ class _ProductListScreenState extends State<ProductListScreen> {
             child: CircularProgressIndicator(),
      )
      );
+  }
+}
+// dnh nghia lop chi tiet sanpham
+class ProducDetailScreen extends StatelessWidget{
+  final Product product;
+  ProducDetailScreen(this.product);
+// giao dien
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Product Detail'),
+        actions: [
+          ElevatedButton(onPressed: (){
+            Navigator.push(context, 
+            MaterialPageRoute(builder: (context)=> CartScreen()),);
+          },
+          child: Icon(Icons.shopping_cart),
+          style: ElevatedButton.styleFrom(
+              shape: CircleBorder(),
+              padding: EdgeInsets.all(0)
+            ),
+            ),
+        ],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(padding: const EdgeInsets.all(8),
+          child: Text('Nhanh: ${product.brands_filter_facet}'),
+          ),
+          Image.network(product.search_image),
+          Padding(padding: const EdgeInsets.all(8),
+            child: Text('Info: ${product.product_additional_info}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Padding(padding: const EdgeInsets.all(8),
+          child: Text('ID: ${product.styleid}'),
+          ),
+          Padding(padding: const EdgeInsets.all(8),
+          child: Text('Price: ${product.price}'),
+          )
+        ],
+      ),
+    );
+  }
+}
+//shopping cart
+class CartScreen extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Shopping cart"),),
+      body: Center(
+        child: Text('Gio hang cua ban:'),
+      ),
+    );
   }
 }
 //dinh nghĩa homescreen
