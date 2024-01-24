@@ -171,7 +171,7 @@ class ProducDetailScreen extends StatelessWidget{
     );
   }
 }
-//shopping cart
+//shopping cart, day la cai gio hang
 class CartScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -202,9 +202,7 @@ class HomeScreen extends StatelessWidget{
         ),
       ),
     );
-
   }
-
 }
 class Product {
   String search_image;
